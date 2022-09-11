@@ -56,21 +56,23 @@ function drawWord() {
 
 drawWord();
 
+let key = '';
 let keys = [];
 let keysDrawed = [];
 let attempt = 0;
 
 document.addEventListener('keydown', (e) => {
-  let key = e.key;
-  key = key.toUpperCase();
+  if (e.keyCode >= 65 && e.keyCode <= 90) {
+    key = e.key;
+    key = key.toUpperCase();
+  }
 
-  if (!keys.includes(key) && isNaN(key)) {
+  if (!keys.includes(key)) {
     keys.push(key);
   }
 
   if (
     !wordUpperCase.includes(key) &&
-    isNaN(key) &&
     !keysDrawed.includes(key) &&
     attempt < 10
   ) {
@@ -107,15 +109,15 @@ document.addEventListener('keydown', (e) => {
       case 9:
         drawLine(500, 280, 550, 340, 5, 'round', '#0A3871');
         break;
-      default:
-        break;
     }
   } else {
-    for (let i = 0; i < wordSplit.length; i++) {
-      if (wordSplit[i].includes(key) && !keysDrawed.includes(key)) {
-        drawText(key, 255 + tw * i, 480, '48px Inter', '#0A3871');
-        keysDrawed.push(key);
+    if (!keysDrawed.includes(key)) {
+      for (let i = 0; i < wordSplit.length; i++) {
+        if (wordSplit[i].includes(key)) {
+          drawText(key, 255 + tw * i, 480, '48px Inter', '#0A3871');
+        }
       }
+      keysDrawed.push(key);
     }
   }
 });
