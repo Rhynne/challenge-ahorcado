@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/normalize.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
       rel="stylesheet"
@@ -15,14 +15,34 @@
     <title>Juego del Ahorcado | Alura Challenge</title>
   </head>
   <body>
-    <div>
-      <img src="assets/images/logo.svg" alt="logo" />
-      <button>Iniciar juego</button>
-      <button>Añadir palabra</button>
+    <div class="container">
+      <header>
+        <img src="assets/images/logo.svg" alt="logo" class="logo" />
+      </header>
+      <section id="start">
+        <button
+          class="btn btn-blue"
+          type="submit"
+          id="btn-start"
+          onclick="gameStart()"
+        >
+          Iniciar juego
+        </button>
+        <button id="btn-newWord" class="btn">Añadir palabra</button>
+      </section>
+      <section id="game">
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <div>
+          <button id="btn-restart" class="btn btn-blue" onclick="gameRestart()">
+            Nueva palabra
+          </button>
+          <button id="btn-surrender" class="btn" onclick="gameEnd()">
+            Desistir
+          </button>
+        </div>
+      </section>
     </div>
-    <div id="game">
-      <canvas id="canvas" width="800" height="600"></canvas>
-    </div>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/game.js"></script>
+    <script src="assets/js/canvas.js"></script>
   </body>
 </html>
