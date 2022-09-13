@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
       rel="stylesheet"
     />
-    <title>Juego del Ahorcado | Alura Challenge</title>
+    <title>Juego del ahorcado | Alura Challenge</title>
   </head>
   <body>
     <div class="container">
@@ -20,15 +20,12 @@
         <img src="assets/images/logo.svg" alt="logo" class="logo" />
       </header>
       <section id="start">
-        <button
-          class="btn btn-blue"
-          type="submit"
-          id="btn-start"
-          onclick="gameStart()"
-        >
+        <button class="btn btn-blue" id="btn-start" onclick="gameStart()">
           Iniciar juego
         </button>
-        <button id="btn-newWord" class="btn">Añadir palabra</button>
+        <button id="btn-newWord" class="btn" onclick="addWord()">
+          Añadir palabra
+        </button>
       </section>
       <section id="game">
         <canvas id="canvas" width="800" height="600"></canvas>
@@ -38,6 +35,28 @@
           </button>
           <button id="btn-surrender" class="btn" onclick="gameEnd()">
             Desistir
+          </button>
+        </div>
+      </section>
+      <section id="new-word">
+        <input
+          type="text"
+          maxlength="8"
+          id="input-word"
+          class="input"
+          placeholder="Ingrese una palabra"
+        />
+        <div>
+          <p class="info-tip">&#x1F6C8; Max. 8 letras</p>
+          <button
+            class="btn btn-blue"
+            id="btn-saveAndStart"
+            onclick="saveAndStart()"
+          >
+            Guardar e iniciar
+          </button>
+          <button id="btn-cancel" class="btn" onclick="cancelWord()">
+            Cancelar
           </button>
         </div>
       </section>

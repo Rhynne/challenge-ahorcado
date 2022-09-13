@@ -41,8 +41,6 @@ body {
 
 .btn-blue {
   color: white;
-  font-size: 20px;
-  line-height: 22px;
   background-color: #0a3871;
 }
 
@@ -50,4 +48,35 @@ body {
   display: none;
   justify-content: center;
   justify-items: center;
+}
+
+#new-word {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  border: 0;
+  background: none;
+  color: #0a3871;
+  align-self: start;
+  resize: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: #0a3871;
+}
+
+.info-tip {
+  font-size: 16px;
+
+  opacity: 0.8;
 }

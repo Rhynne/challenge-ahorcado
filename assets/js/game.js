@@ -24,24 +24,27 @@ function selectWord() {
 function gameStart() {
   document.getElementById('start').style.display = 'none';
   document.getElementById('game').style.display = 'grid';
+  document.getElementById('new-word').style.display = 'none';
   selectWord();
   drawCanvas();
 }
 
 function gameRestart() {
-  wordPicked = '';
-  x = 200;
-  key = '';
-  keys = [];
-  keysDrawed = [];
-  attempt = 0;
-  win = 0;
+  clearVariables();
   clearCanvas();
   selectWord();
   drawCanvas();
 }
 
 function gameEnd() {
+  clearVariables();
+  clearCanvas();
+  document.getElementById('start').style.display = 'grid';
+  document.getElementById('game').style.display = 'none';
+  document.getElementById('new-word').style.display = 'none';
+}
+
+function clearVariables() {
   wordPicked = '';
   x = 200;
   key = '';
@@ -49,9 +52,26 @@ function gameEnd() {
   keysDrawed = [];
   attempt = 0;
   win = 0;
-  clearCanvas();
+  document.getElementById('input-word').value = '';
+}
+
+function addWord() {
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('game').style.display = 'none';
+  document.getElementById('new-word').style.display = 'grid';
+}
+
+function cancelWord() {
   document.getElementById('start').style.display = 'grid';
   document.getElementById('game').style.display = 'none';
+  document.getElementById('new-word').style.display = 'none';
+  document.getElementById('input-word').value = '';
+}
+
+function saveAndStart() {
+  let word = document.getElementById('input-word').value;
+  words.push(word.toUpperCase());
+  gameStart();
 }
 
 document.addEventListener('keydown', (e) => {
