@@ -1,17 +1,62 @@
-let words = ['JAVA', 'KOTLIN', 'SWIFT', 'OBJECTIVEC'];
+let words = [
+  'HTML',
+  'CSS',
+  'JAVASCRIPT',
+  'REACT',
+  'JAVA',
+  'SPRING',
+  'MYSQL',
+  'MONGODB',
+];
 let wordPicked = '';
+let x = 200;
 let key = '';
 let keys = [];
 let keysDrawed = [];
 let attempt = 0;
+let win = 0;
 
 function selectWord() {
   let word = words[Math.floor(Math.random() * words.length)];
   wordPicked = word;
-  console.log(wordPicked);
 }
-/* 
+
+function gameStart() {
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('game').style.display = 'grid';
+  selectWord();
+  drawCanvas();
+}
+
+function gameRestart() {
+  wordPicked = '';
+  x = 200;
+  key = '';
+  keys = [];
+  keysDrawed = [];
+  attempt = 0;
+  win = 0;
+  clearCanvas();
+  selectWord();
+  drawCanvas();
+}
+
+function gameEnd() {
+  wordPicked = '';
+  x = 200;
+  key = '';
+  keys = [];
+  keysDrawed = [];
+  attempt = 0;
+  win = 0;
+  clearCanvas();
+  document.getElementById('start').style.display = 'grid';
+  document.getElementById('game').style.display = 'none';
+}
+
 document.addEventListener('keydown', (e) => {
+  let tw = 600 / wordPicked.length;
+
   if (e.keyCode >= 65 && e.keyCode <= 90) {
     key = e.key;
     key = key.toUpperCase();
@@ -21,7 +66,12 @@ document.addEventListener('keydown', (e) => {
     keys.push(key);
   }
 
-  if (!wordPicked.includes(key) && !keysDrawed.includes(key) && attempt < 9) {
+  if (
+    !wordPicked.includes(key) &&
+    !keysDrawed.includes(key) &&
+    attempt < 9 &&
+    win != wordPicked.length
+  ) {
     drawText(key, x + tw, 530, '24px Inter', '#495057');
     keysDrawed.push(key);
     x = x + 25;
@@ -54,40 +104,30 @@ document.addEventListener('keydown', (e) => {
         break;
       case 9:
         drawLine(500, 280, 550, 340, 5, 'round', '#0A3871');
+        drawText('¡Perdiste!', 400, 30, '36px Inter', 'red');
+        drawText(
+          'Palabra secreta: ' + wordPicked,
+          400,
+          570,
+          '24px Inter',
+          'red'
+        );
         break;
     }
   } else {
-    if (!keysDrawed.includes(key)) {
+    if (!keysDrawed.includes(key) && attempt < 9 && win != wordPicked.length) {
       for (let i = 0; i < wordPicked.length; i++) {
         if (wordPicked[i].includes(key)) {
-          drawText(key, 255 + tw * i, 480, '48px Inter', '#0A3871');
+          drawText(key, 175 + tw * i, 480, '48px Inter', '#0A3871');
+          win = win + 1;
+        }
+        if (win == wordPicked.length) {
+          drawText('¡Felicidades!', 400, 30, '36px Inter', 'green');
+          break;
         }
       }
+
       keysDrawed.push(key);
     }
   }
 });
- */
-function gameStart() {
-  document.getElementById('start').style.display = 'none';
-  document.getElementById('game').style.display = 'grid';
-  selectWord();
-  drawCanvas();
-}
-
-function gameRestart() {
-  selectWord();
-  clearCanvas()
-  drawCanvas();
-}
-
-function gameEnd() {
-  clearCanvas();
-  document.getElementById('start').style.display = 'grid';
-  document.getElementById('game').style.display = 'none';
-  wordPicked = '';
-  key = '';
-  keys = [];
-  keysDrawed = [];
-  attempt = 0;
-}
